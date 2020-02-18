@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Atom
+Comment=The hackable text editor
+GenericName=Text Editor
+Exec=AppRun
+Icon=atom
+Type=Application
+StartupNotify=false
+Categories=GNOME;GTK;Utility;TextEditor;Development;
+MimeType=text/plain;
+StartupWMClass=atom
