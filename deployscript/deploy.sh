@@ -1,4 +1,8 @@
 #!/bin/bash
+P_URL="https://github.com/atom/atom/releases/download/v1.44.0/atom-amd64.tar.gz"
+P_NAME=$(echo $P_URL | cut -d/ -f5)
+P_VERSION=$(echo $P_URL | cut -d/ -f8)
+P_FILENAME=$(echo $P_URL | cut -d/ -f9)
 WORKDIR="workdir"
 
 #=========================
@@ -17,8 +21,8 @@ apt install -y aptitude wget file bzip2
 # using the package
 mkdir "$WORKDIR"
 
-wget -nv https://github.com/atom/atom/releases/download/v1.44.0/atom-amd64.tar.gz
-tar xf atom-amd64.tar.gz -C "$WORKDIR/"
+wget -nv $P_URL
+tar xf $P_FILENAME -C "$WORKDIR/"
 
 cd "$WORKDIR" || die "ERROR: Directory don't exist: $WORKDIR"
 
@@ -56,6 +60,6 @@ cp resource/* $WORKDIR
 
 ./appimagetool.AppImage --appimage-extract
 
-export ARCH=x86_64; squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|atom_Appimage|continuous|atom-*arch*.AppImage.zsync' atom-${ARCH}.AppImage
+export ARCH=x86_64; squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|$P_NAME_Appimage|continuous|$P_NAME-$P_VERSION-*arch*.AppImage.zsync' $P_NAME-$P_VERSION-${ARCH}.AppImage
 
 echo "All files at the end of script: $(ls)"

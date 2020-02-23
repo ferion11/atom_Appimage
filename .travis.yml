@@ -3,9 +3,6 @@ sudo: required
 language: cpp
 
 before_install:
-  # ubuntu xenial
-  # - wget -nv -c package.deb
-
   # appimagetool
   - wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool.AppImage
 
@@ -17,8 +14,9 @@ after_success:
   - mkdir apps
 
   # ubuntu xenial
-  - cp atom-x86_64.AppImage apps
-  - cp atom-x86_64.AppImage.zsync apps
+  - rm appimagetool.AppImage
+  - cp *.AppImage apps
+  - cp *.AppImage.zsync apps
 
   # md5sum tool
   - wget -c https://github.com/ferion11/libsutil/releases/download/md5sum_util_v0.1/md5sum_util.sh
