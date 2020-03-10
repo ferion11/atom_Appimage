@@ -3,13 +3,13 @@ HERE="$(dirname "$(readlink -f "${0}")")"
 #------------------------------
 
 # Libs and deps variables
-export LD_LIBRARY_PATH="$HERE/atom-1.44.0-amd64":$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="$HERE/atom-1.45.0-amd64":$LD_LIBRARY_PATH
 
 # from .desktop
 #export ATOM_DISABLE_SHELLING_OUT_FOR_ENVIRONMENT=false
 
 #------------------------------
-MAIN="$HERE/atom-1.44.0-amd64/atom"
+MAIN="$HERE/atom-1.45.0-amd64/atom"
 
-export PATH=$HERE/atom-1.44.0-amd64:$PATH
+export PATH=$HERE/atom-1.45.0-amd64:$PATH
 "$MAIN" "$@" | cat
