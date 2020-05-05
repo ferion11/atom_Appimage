@@ -1,7 +1,8 @@
 #!/bin/bash
-P_URL="https://github.com/atom/atom/releases/download/v1.45.0/atom-amd64.tar.gz"
+P_URL="https://github.com/atom/atom/releases/download/v1.46.0/atom-amd64.tar.gz"
 P_NAME=$(echo $P_URL | cut -d/ -f5)
 P_VERSION=$(echo $P_URL | cut -d/ -f8)
+P_VERSION_NUM="${P_VERSION:1}"
 P_FILENAME=$(echo $P_URL | cut -d/ -f9)
 WORKDIR="workdir"
 
@@ -53,6 +54,24 @@ cd ..
 #wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O  appimagetool.AppImage
 chmod +x appimagetool.AppImage
 
+cat > "AppRun" << EOF
+#!/bin/bash
+HERE="\$(dirname "\$(readlink -f "\${0}")")"
+#------------------------------
+
+# Libs and deps variables
+export LD_LIBRARY_PATH="\$HERE/atom-${P_VERSION_NUM}-amd64":\$LD_LIBRARY_PATH
+
+# from .desktop
+#export ATOM_DISABLE_SHELLING_OUT_FOR_ENVIRONMENT=false
+
+#------------------------------
+MAIN="\$HERE/atom-${P_VERSION_NUM}-amd64/atom"
+
+export PATH=\$HERE/atom-${P_VERSION_NUM}-amd64:\$PATH
+"\$MAIN" "\$@" | cat
+
+EOF
 chmod +x AppRun
 
 cp AppRun $WORKDIR
@@ -60,6 +79,6 @@ cp resource/* $WORKDIR
 
 ./appimagetool.AppImage --appimage-extract
 
-export ARCH=x86_64; squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|$P_NAME_Appimage|continuous|$P_NAME-$P_VERSION-*arch*.AppImage.zsync' $P_NAME-$P_VERSION-${ARCH}.AppImage
+export ARCH=x86_64; squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-*arch*.AppImage.zsync' ${P_NAME}-${P_VERSION}-${ARCH}.AppImage
 
 echo "All files at the end of script: $(ls)"
