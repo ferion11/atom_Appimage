@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/ferion11/atom_Appimage.svg?branch=master)](https://travis-ci.com/ferion11/atom_Appimage) [![AppImage Build](https://img.shields.io/badge/AppImage-build-blue)](https://github.com/ferion11/atom_Appimage/releases)
+[![Automation testing](https://github.com/ferion11/atom_Appimage/workflows/appimage-continuous/badge.svg)](https://github.com/ferion11/atom_Appimage/actions) [![AppImage Build](https://img.shields.io/badge/AppImage-build-blue)](https://github.com/ferion11/atom_Appimage/releases)
 
 # atom_Appimage
 
