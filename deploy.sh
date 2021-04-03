@@ -51,7 +51,7 @@ mkdir -p $pkgcachedir
 # appimage
 cd ..
 
-#wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O  appimagetool.AppImage
+wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O  appimagetool.AppImage
 chmod +x appimagetool.AppImage
 
 cat > "AppRun" << EOF
