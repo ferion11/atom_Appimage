@@ -14,9 +14,9 @@ die() { echo >&2 "$*"; exit 1; };
 
 #-----------------------------
 #dpkg --add-architecture i386
-apt update
+sudo apt update
 #apt install -y aptitude wget file bzip2 gcc-multilib
-apt install -y aptitude wget file bzip2
+sudo apt install -y aptitude wget file bzip2
 #===========================================================================================
 # Get inex
 # using the package
@@ -30,7 +30,8 @@ cd "$WORKDIR" || die "ERROR: Directory don't exist: $WORKDIR"
 pkgcachedir='/tmp/.pkgdeploycache'
 mkdir -p $pkgcachedir
 
-#aptitude -y -d -o dir::cache::archives="$pkgcachedir" install atom
+#sudo aptitude -y -d -o dir::cache::archives="$pkgcachedir" install atom
+# sudo chmod 777 $pkgcachedir -R
 
 #extras
 #wget -nv -c http://ftp.osuosl.org/pub/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-4_amd64.deb -P $pkgcachedir
