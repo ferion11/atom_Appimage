@@ -81,7 +81,7 @@ cp resource/* $WORKDIR
 
 ./appimagetool.AppImage --appimage-extract
 
-squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage.zsync' ${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage
+ARCH="${P_ARCH}" squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage.zsync' ${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage
 
 rm -rf appimagetool.AppImage
 
