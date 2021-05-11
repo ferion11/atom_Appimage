@@ -4,6 +4,7 @@ P_NAME=$(echo $P_URL | cut -d/ -f5)
 P_VERSION=$(echo $P_URL | cut -d/ -f8)
 P_VERSION_NUM="${P_VERSION:1}"
 P_FILENAME=$(echo $P_URL | cut -d/ -f9)
+P_ARCH=x86_64
 WORKDIR="workdir"
 
 #=========================
@@ -80,7 +81,7 @@ cp resource/* $WORKDIR
 
 ./appimagetool.AppImage --appimage-extract
 
-export ARCH=x86_64; squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-*arch*.AppImage.zsync' ${P_NAME}-${P_VERSION}-${ARCH}.AppImage
+ARCH="${P_ARCH}" squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage.zsync' ${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage
 
 rm -rf appimagetool.AppImage
 
