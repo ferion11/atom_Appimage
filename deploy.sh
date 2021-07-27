@@ -1,5 +1,5 @@
 #!/bin/bash
-P_URL="https://github.com/atom/atom/releases/download/v1.57.0/atom-amd64.tar.gz"
+P_URL="https://github.com/atom/atom/releases/download/v1.58.0/atom-amd64.tar.gz"
 P_NAME=$(echo $P_URL | cut -d/ -f5)
 P_VERSION=$(echo $P_URL | cut -d/ -f8)
 P_VERSION_NUM="${P_VERSION:1}"
