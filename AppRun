@@ -1,16 +1,16 @@
 #!/bin/bash
 
-HERE="\$(dirname "\$(readlink -f "\${0}")")"
+HERE="$(dirname "$(readlink -f "${0}")")"
 
 # Libs and deps variables
-export LD_LIBRARY_PATH="\$HERE/atom-${P_VERSION_NUM}-amd64":\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="$HERE/atom":"$LD_LIBRARY_PATH"
 
 # from .desktop
 #export ATOM_DISABLE_SHELLING_OUT_FOR_ENVIRONMENT=false
 
-export PATH=\$HERE/atom-${P_VERSION_NUM}-amd64:\$PATH
+export PATH="$HERE/atom":"$PATH"
 # Detect APM (Atom Package Manager)
-export PATH="\$HERE/atom-${P_VERSION_NUM}-amd64/resources/app/apm/bin":"\$PATH"
+export PATH="$HERE/atom/resources/app/apm/bin":"$PATH"
 
-MAIN="\$HERE/atom-${P_VERSION_NUM}-amd64/atom"
-"\$MAIN" "\$@" | cat
+MAIN="$HERE/atom/atom"
+"$MAIN" "$@" | cat
