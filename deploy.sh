@@ -8,35 +8,28 @@ P_FILENAME=$(echo $P_URL | cut -d/ -f9)
 P_ARCH=x86_64
 WORKDIR="workdir"
 
-die() { echo >&2 "$*"; exit 1; };
-
 sudo apt update
 sudo apt install -y aptitude wget file bzip2
 
 mkdir "$WORKDIR"
 
-wget -nv $P_URL
-tar xf $P_FILENAME -C "$WORKDIR/"
+# Download and extract the archive file
+wget -nv "$P_URL"
+tar xf "$P_FILENAME" -C "$WORKDIR/"
 
-cd "$WORKDIR" || die "ERROR: Directory don't exist: $WORKDIR"
+# AppRun file supposes main directory to be named 'atom'
+mv "$WORKDIR/atom-{$P_VERSION}-amd64" "$WORKDIR/atom"
 
-pkgcachedir='/tmp/.pkgdeploycache'
-mkdir -p $pkgcachedir
-
-cd ..
-
-wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O  appimagetool.AppImage
+wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool.AppImage
 chmod +x appimagetool.AppImage
 
 chmod +x AppRun
 
-cp AppRun $WORKDIR
-cp resource/* $WORKDIR
+cp AppRun "$WORKDIR"
+cp resource/* "$WORKDIR"
 
-./appimagetool.AppImage --appimage-extract
+ARCH="${P_ARCH}" ./appimagetoo.AppImage -v "$WORKDIR" -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage.zsync' "${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage"
 
-ARCH="${P_ARCH}" squashfs-root/AppRun -v $WORKDIR -u 'gh-releases-zsync|ferion11|${P_NAME}_Appimage|continuous|${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage.zsync' ${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage
-
-rm -rf appimagetool.AppImage
+rm appimagetool.AppImage
 
 echo "All files at the end of script: $(ls)"
