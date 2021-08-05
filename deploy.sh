@@ -56,28 +56,6 @@ cd ..
 wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O  appimagetool.AppImage
 chmod +x appimagetool.AppImage
 
-cat > "AppRun" << EOF
-#!/bin/bash
-
-HERE="\$(dirname "\$(readlink -f "\${0}")")"
-#------------------------------
-
-# Libs and deps variables
-export LD_LIBRARY_PATH="\$HERE/atom-${P_VERSION_NUM}-amd64":\$LD_LIBRARY_PATH
-
-# from .desktop
-#export ATOM_DISABLE_SHELLING_OUT_FOR_ENVIRONMENT=false
-
-#------------------------------
-MAIN="\$HERE/atom-${P_VERSION_NUM}-amd64/atom"
-
-export PATH=\$HERE/atom-${P_VERSION_NUM}-amd64:\$PATH
-# Detect APM (Atom Package Manager)
-export PATH="\$HERE/atom-${P_VERSION_NUM}-amd64/resources/app/apm/bin":"\$PATH"
-
-"\$MAIN" "\$@" | cat
-
-EOF
 chmod +x AppRun
 
 cp AppRun $WORKDIR
