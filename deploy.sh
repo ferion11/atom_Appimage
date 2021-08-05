@@ -58,6 +58,7 @@ chmod +x appimagetool.AppImage
 
 cat > "AppRun" << EOF
 #!/bin/bash
+
 HERE="\$(dirname "\$(readlink -f "\${0}")")"
 #------------------------------
 
@@ -71,6 +72,9 @@ export LD_LIBRARY_PATH="\$HERE/atom-${P_VERSION_NUM}-amd64":\$LD_LIBRARY_PATH
 MAIN="\$HERE/atom-${P_VERSION_NUM}-amd64/atom"
 
 export PATH=\$HERE/atom-${P_VERSION_NUM}-amd64:\$PATH
+# Detect APM (Atom Package Manager)
+export PATH="\$HERE/atom-${P_VERSION_NUM}-amd64/resources/app/apm/bin":"\$PATH"
+
 "\$MAIN" "\$@" | cat
 
 EOF
