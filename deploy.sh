@@ -18,7 +18,7 @@ wget -nv "$P_URL"
 tar xf "$P_FILENAME" -C "$WORKDIR/"
 
 # AppRun file supposes main directory to be named 'atom'
-mv "$WORKDIR/atom-{$P_VERSION_NUM}-amd64" "$WORKDIR/atom"
+mv "$WORKDIR/atom-${P_VERSION_NUM}-amd64" "$WORKDIR/atom"
 
 wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool.AppImage
 chmod +x appimagetool.AppImage
