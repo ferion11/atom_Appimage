@@ -28,7 +28,7 @@ chmod +x AppRun
 cp AppRun "$WORKDIR"
 cp resource/* "$WORKDIR"
 
-ARCH="${P_ARCH}" ./appimagetool.AppImage -v "$WORKDIR" -u 'gh-releases-zsync|ferion11|atom_Appimage|continuous-master|${P_NAME}-*-${P_ARCH}.AppImage.zsync' "${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage"
+ARCH="${P_ARCH}" ./appimagetool.AppImage -v "$WORKDIR" -u "gh-releases-zsync|ferion11|atom_Appimage|continuous-master|${P_NAME}-*-${P_ARCH}.AppImage.zsync" "${P_NAME}-${P_VERSION}-${P_ARCH}.AppImage"
 
 rm appimagetool.AppImage
 
